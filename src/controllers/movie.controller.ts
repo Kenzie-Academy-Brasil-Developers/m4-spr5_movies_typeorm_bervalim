@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
-import { TmovieRead, TmovieResponse } from "../interfaces/movie.interfaces";
+import {
+  TmovieRead,
+  TmovieResponse,
+  TmovieUpdate,
+} from "../interfaces/movie.interfaces";
 import {
   createMovieService,
   deleteMovieService,
   readMoviesService,
+  updateMovieService,
 } from "../services/movie.services";
 
 export const createMovieController = async (
@@ -28,4 +33,15 @@ export const deleteMovieController = async (
 ): Promise<Response> => {
   await deleteMovieService(res.locals.findMovie);
   return res.status(204).json();
+};
+
+export const updateMovieController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const updatedProduct: TmovieUpdate = await updateMovieService(
+    res.locals.findMovie,
+    req.body
+  );
+  return res.status(200).json(updatedProduct);
 };

@@ -13,7 +13,7 @@ export const verifyId = async (
   });
 
   if (!findMovie) {
-    throw new AppError("Movie not found.", 404);
+    throw new AppError("Movie not found", 404);
   }
 
   res.locals = { ...res.locals, findMovie };

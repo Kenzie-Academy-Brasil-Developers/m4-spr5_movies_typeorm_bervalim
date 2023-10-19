@@ -2,6 +2,7 @@ import {
   TmovieRead,
   TmovieRequest,
   TmovieResponse,
+  TmovieUpdate,
 } from "../interfaces/movie.interfaces";
 import { movieRepo } from "../repositories/movie.repositorie";
 
@@ -21,4 +22,12 @@ export const deleteMovieService = async (
   movie: TmovieResponse
 ): Promise<void> => {
   await movieRepo.remove(movie);
+};
+
+export const updateMovieService = async (
+  movie: TmovieResponse,
+  newBodyRequest: TmovieUpdate
+) => {
+  const updatedMovie = movieRepo.save({ ...movie, ...newBodyRequest });
+  return updatedMovie;
 };
