@@ -13,7 +13,7 @@ export const verifyNameExists = async (
   const findMovieName = await movieRepo.findOneBy({ name: req.body.name });
 
   if (findMovieName) {
-    throw new AppError("Movie already exists", 409);
+    throw new AppError("Movie already exists.", 409);
   }
 
   return next();

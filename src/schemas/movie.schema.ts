@@ -5,7 +5,7 @@ export const movieResponseSchema = z.object({
   name: z.string().max(50).min(3),
   description: z.string().nullish(),
   duration: z.number().positive(),
-  price: z.number().positive(),
+  price: z.number().positive().int(),
 });
 
 export const movieRequestSchema = movieResponseSchema.omit({ id: true });
