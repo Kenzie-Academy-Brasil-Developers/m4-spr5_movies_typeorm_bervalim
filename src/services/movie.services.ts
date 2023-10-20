@@ -4,7 +4,10 @@ import {
   TmovieResponse,
   TmovieUpdate,
 } from "../interfaces/movie.interfaces";
-import { TpaginationParams } from "../interfaces/pagination.interface";
+import {
+  TpaginationParams,
+  TpaginationResponse,
+} from "../interfaces/pagination.interface";
 import { movieRepo } from "../repositories/movie.repositorie";
 
 export const createMovieService = async (
@@ -21,7 +24,7 @@ export const readMoviesService = async ({
   prevPage,
   order,
   sort,
-}: TpaginationParams): Promise<any> => {
+}: TpaginationParams): Promise<TpaginationResponse> => {
   const [movies, count] = await movieRepo.findAndCount({
     order: { [sort]: order },
     skip: page,

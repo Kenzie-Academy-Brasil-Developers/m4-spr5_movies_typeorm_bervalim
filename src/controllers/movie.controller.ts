@@ -10,6 +10,7 @@ import {
   readMoviesService,
   updateMovieService,
 } from "../services/movie.services";
+import { TpaginationResponse } from "../interfaces/pagination.interface";
 
 export const createMovieController = async (
   req: Request,
@@ -23,7 +24,9 @@ export const readMoviesController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const movies: TmovieRead = await readMoviesService(res.locals.pagination);
+  const movies: TpaginationResponse = await readMoviesService(
+    res.locals.pagination
+  );
   return res.status(200).json(movies);
 };
 
