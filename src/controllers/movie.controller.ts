@@ -23,7 +23,7 @@ export const readMoviesController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const movies: TmovieRead = await readMoviesService();
+  const movies: TmovieRead = await readMoviesService(res.locals.pagination);
   return res.status(200).json(movies);
 };
 

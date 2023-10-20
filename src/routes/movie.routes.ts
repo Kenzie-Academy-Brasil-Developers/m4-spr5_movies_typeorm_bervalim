@@ -9,6 +9,7 @@ import {
 } from "../controllers/movie.controller";
 import { verifyNameExists } from "../middlewares/verifyNameExists.middleware";
 import { verifyId } from "../middlewares/verivyId.middleware";
+import { pagination } from "../middlewares/pagination.middleware";
 
 export const movieRouter: Router = Router();
 movieRouter.post(
@@ -17,7 +18,7 @@ movieRouter.post(
   verifyNameExists,
   createMovieController
 );
-movieRouter.get("/", readMoviesController);
+movieRouter.get("/", pagination, readMoviesController);
 movieRouter.use("/:id", verifyId);
 movieRouter.delete("/:id", deleteMovieController);
 movieRouter.patch(
